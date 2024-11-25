@@ -14,8 +14,160 @@
  *= require_self
  */
 
+ .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
 
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 2px solid #2E8B57;
+}
 
+.login-title {
+  text-align: center;
+  color: #8B0000;
+  margin-bottom: 20px;
+}
 
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #2E8B57;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #2E8B57;
+  border-radius: 4px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.form-checkbox {
+  margin-right: 10px;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #E0115F;
+}
+
+.shared-links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.shared-links a {
+  color: #2E8B57;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.shared-links a:hover {
+  text-decoration: underline;
+}
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.signup-card {
+width: 100%;
+max-width: 400px;
+padding: 30px;
+background-color: white;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+border: 2px solid #2E8B57;
+}
+
+.signup-title {
+text-align: center;
+color: #8B0000;
+margin-bottom: 20px;
+}
+
+.signup-form .form-group {
+margin-bottom: 15px;
+}
+
+.form-label {
+display: block;
+margin-bottom: 5px;
+color: #2E8B57;
+}
+
+.password-hint {
+color: #8B0000;
+font-size: 0.8em;
+}
+
+.form-input {
+width: 100%;
+padding: 10px;
+border: 1px solid #2E8B57;
+border-radius: 4px;
+}
+
+.btn-signup {
+width: 100%;
+padding: 12px;
+background-color: #8B0000;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.btn-signup:hover {
+background-color: #E0115F;
+}
+
+.shared-links {
+text-align: center;
+margin-top: 15px;
+}
+
+.shared-links a {
+color: #2E8B57;
+text-decoration: none;
+margin: 0 10px;
+}
+
+.shared-links a:hover {
+text-decoration: underline;
+}
 
 @import "bootstrap";

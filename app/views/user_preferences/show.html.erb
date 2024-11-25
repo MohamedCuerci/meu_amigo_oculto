@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_preference %>
+
+<div>
+  <%= link_to "Edit this user preference", edit_user_preference_path(@user_preference) %> |
+  <%= link_to "Back to user preferences", user_preferences_path %>
+
+  <%= button_to "Destroy this user preference", @user_preference, method: :delete %>
+</div>
