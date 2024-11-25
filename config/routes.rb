@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :assignments
+  
+  resources :secret_santas do
+    resources :participants, only: [:create, :destroy]
+  end
+
   resources :user_preferences
   devise_for :users
   root 'home#index'
