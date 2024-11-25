@@ -73,3 +73,8 @@ end
 
 
 gem 'stringio', "~>3.1.2"
+
+# css
+gem 'dartsass-sprockets'
+gem 'bootstrap', '~> 5.3.3'
+gem 'jquery-rails'
