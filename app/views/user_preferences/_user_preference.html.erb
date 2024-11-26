@@ -1,4 +1,13 @@
 <div id="<%= dom_id user_preference %>">
+
+  <% if user_preference.profile_picture.attached? %>
+    <%= image_tag user.profile_picture, class: "profile-img", alt: user.name %>
+  <% else %>
+    <div class="profile-initials">
+      <%= user_preference.initials %>
+    </div>
+  <% end %>
+
   <p>
     <strong>Nickname:</strong>
     <%= user_preference.nickname %>
@@ -8,10 +17,4 @@
     <strong>Age:</strong>
     <%= user_preference.age %>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= user_preference.user_id %>
-  </p>
-
 </div>

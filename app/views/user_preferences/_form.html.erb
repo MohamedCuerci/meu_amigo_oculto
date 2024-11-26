@@ -12,6 +12,11 @@
   <% end %>
 
   <div>
+    <%= form.label :profile_picture %>
+    <%= form.file_field :profile_picture %>
+  </div>
+
+  <div>
     <%= form.label :nickname, style: "display: block" %>
     <%= form.text_field :nickname %>
   </div>
@@ -19,11 +24,6 @@
   <div>
     <%= form.label :age, style: "display: block" %>
     <%= form.text_field :age %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
   </div>
 
   <div>

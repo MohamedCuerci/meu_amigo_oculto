@@ -1,15 +1,80 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @secret_santa %>
 
-<h2>Adicionar Participante</h2>
+<div class="container text-center">
+  <div class="container text-center">
+    <!-- Status do Sorteio -->
+    <h5>"Sorteio/Aberto"</h5>
+    <h1><%= @secret_santa.name %></h1>
+    <h5>ID: <%= @secret_santa.code %></h5>
+    <hr>
+
+    <!-- Imagem e Card -->
+    <div class="row align-items-start">
+      <!-- Imagem -->
+      <div class="col-md-8 image-container">
+        <%= image_tag(@secret_santa.image.attached? ? @secret_santa.image : "default-image.webp", class: "img-fluid rounded", style: "width: 700px; height: 400px", alt: @secret_santa.name) %>
+        <p class="mt-3 text-center">Seja a primeira pessoa a participar deste sorteio! 🎉</p>
+      </div>
+
+      <!-- Menu de informações -->
+      <div class="col-md-4">
+        <div class="card p-0">
+          <div class="card-body">
+            <h4 class="text-start">Meta:</h4>
+            <h4 class="text-start">Arrecadado:</h4>
+            <h5 class="text-start">Apoiadores: <%= @secret_santa.participants.count %></h5>
+
+            <div class="text-center mt-3">
+              <%= button_to "Quero Participar", root_path, method: :post, class: "btn btn-success btn-lg w-100" %>
+            </div>
+
+            <hr>
+
+            <!-- Informações do Criador -->
+            <div class="profile-container d-flex align-items-center">
+              <% if @secret_santa.creator.user_preference.profile_picture.attached? %>
+                <%= image_tag @secret_santa.creator.user_preference.profile_picture, class: "profile-img rounded-circle me-3", alt: @secret_santa.creator.email %>
+              <% else %>
+                <div class="profile-initials d-flex justify-content-center align-items-center rounded-circle me-3">
+                  <%= @secret_santa.creator.user_preference.initials %>
+                </div>
+              <% end %>
+              <div class="profile-info">
+                <p class="profile-name fw-bold mb-1 text-start"><%= @secret_santa.creator.user_preference.nickname %></p>
+                <p class="profile-email text-muted mb-1 text-start"><%= @secret_santa.creator.email %></p>
+              </div>
+            </div>
+            <span class="text-muted mt-2 text-start">Organizador do sorteio desde <%= @secret_santa.creator.created_at.strftime('%b/%Y') %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- a descrição deveria ficar dentro do tamanho da imagem -->
+  <div class="col-md-8 text-start">
+    <p><strong>Sorteio criado em:</strong> <%= @secret_santa.created_at.strftime('%d/%m/%Y') %></p>
+    <p><%= @secret_santa.description %></p>
+  </div>
+
+  <!-- partial de participantes -->
+</div>
+
+
+
+
+<%#= render @secret_santa %>
+
+<!--<h2>Adicionar Participante</h2>
 <%= form_with url: secret_santa_participants_path(@secret_santa), local: true do |form| %>
   <div class="form-group">
     <%= label_tag :user_id, "Selecione um usuário" %>
     <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :email), class: "form-control" %>
   </div>
   <%= form.submit "Adicionar", class: "btn btn-primary" %>
-<% end %>
+<% end %>-->
 
 
 <div>

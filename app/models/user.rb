@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def default_user_preference
     UserPreference.create!(user: self)
   end
+
+  # def initials
+  #   email.split.map(&:first).join.upcase 
+  # end
 end

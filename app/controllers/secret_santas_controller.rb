@@ -1,5 +1,7 @@
 class SecretSantasController < ApplicationController
   before_action :set_secret_santa, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new create edit update ]
+  # validação para apenas o criador do sorteio conseguir apagar
 
   # GET /secret_santa or /secret_santa.json
   def index
@@ -76,6 +78,6 @@ class SecretSantasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def secret_santa_params
-      params.require(:secret_santa).permit(:name, :code, :description)
+      params.require(:secret_santa).permit(:name, :code, :description, :image)
     end
 end

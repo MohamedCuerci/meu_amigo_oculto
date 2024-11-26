@@ -5,6 +5,7 @@ class SecretSanta < ApplicationRecord
   has_many :participants
   has_many :users, through: :participants
   belongs_to :creator, class_name: 'User'
+  has_one_attached :image, dependent: :destroy
 
   before_create :generate_unique_code
 

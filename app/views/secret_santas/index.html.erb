@@ -3,12 +3,11 @@
 <h1>Secret santa</h1>
 
 <div id="secret_santa">
-  <% @secret_santas.each do |secret_santa| %>
-    <%= render secret_santa %>
-    <p>
-      <%= link_to "Show this secret santum", secret_santa %>
-    </p>
-  <% end %>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @secret_santas.each do |secret_santa| %>
+      <%= render secret_santa %>
+    <% end %>
+  </div>
 </div>
 
 <%= link_to "New secret santa", new_secret_santa_path %>
