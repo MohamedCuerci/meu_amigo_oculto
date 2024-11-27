@@ -39,21 +39,22 @@
 }
 
 .login-form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .form-label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: -10px; /* Reduz a distância entre a label e o input */
   color: #2E8B57;
 }
 
 .form-input {
   width: 100%;
-  padding: 10px;
+  padding: 8px; /* Reduzi ligeiramente o padding para um visual mais compacto */
   border: 1px solid #2E8B57;
   border-radius: 4px;
 }
+
 
 .remember-me {
   display: flex;
@@ -104,7 +105,7 @@
 
 .signup-card {
 width: 100%;
-max-width: 400px;
+max-width: 500px;
 padding: 30px;
 background-color: white;
 border-radius: 8px;
@@ -119,13 +120,17 @@ margin-bottom: 20px;
 }
 
 .signup-form .form-group {
-margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .form-label {
-display: block;
-margin-bottom: 5px;
-color: #2E8B57;
+  display: block;
+  padding: 0px 0px 8px;
+  margin: 20px 0px 3px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2E8B57;
+  font-weight: bold;
 }
 
 .password-hint {
@@ -135,7 +140,8 @@ font-size: 0.8em;
 
 .form-input {
 width: 100%;
-padding: 10px;
+padding: 7px;
+margin-top: -5px;
 border: 1px solid #2E8B57;
 border-radius: 4px;
 }
