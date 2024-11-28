@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_27_142505) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_28_135241) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -60,16 +60,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_142505) do
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
-  create_table "secret_santa", force: :cascade do |t|
+  create_table "secret_santas", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id", null: false
-    t.index ["code"], name: "index_secret_santa_on_code", unique: true
-    t.index ["creator_id"], name: "index_secret_santa_on_creator_id"
-    t.index ["name"], name: "index_secret_santa_on_name"
+    t.index ["code"], name: "index_secret_santas_on_code", unique: true
+    t.index ["creator_id"], name: "index_secret_santas_on_creator_id"
+    t.index ["name"], name: "index_secret_santas_on_name"
   end
 
   create_table "user_preferences", force: :cascade do |t|
@@ -102,11 +102,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_142505) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "assignments", "secret_santa"
+  add_foreign_key "assignments", "secret_santas"
   add_foreign_key "assignments", "users", column: "giver_id"
   add_foreign_key "assignments", "users", column: "receiver_id"
   add_foreign_key "participants", "secret_santas"
   add_foreign_key "participants", "users"
-  add_foreign_key "secret_santa", "users", column: "creator_id"
+  add_foreign_key "secret_santas", "users", column: "creator_id"
   add_foreign_key "user_preferences", "users"
 end

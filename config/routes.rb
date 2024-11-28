@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   resources :assignments
   
   resources :secret_santas do
-    resources :participants, only: [:create, :destroy]
+    resources :participants, only: [:create, :destroy] do
+      collection do
+        post :join # Define um caminho como /secret_santas/:secret_santa_id/participants/join
+      end
+    end
   end
+  
 
   resources :user_preferences
   

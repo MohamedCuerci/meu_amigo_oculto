@@ -21,12 +21,16 @@
       <div class="col-md-4">
         <div class="card p-0">
           <div class="card-body">
-            <h4 class="text-start">Meta:</h4>
+            <h4 class="text-start">Data do sorteio: 12/12/2024 <%#= @secret_santa.participants.count %></h4>
             <h4 class="text-start">Arrecadado:</h4>
-            <h5 class="text-start">Apoiadores: <%= @secret_santa.participants.count %></h5>
+            <h5 class="text-start">Participantes: <%= @secret_santa.participants.count %></h5>
 
             <div class="text-center mt-3">
-              <%= button_to "Quero Participar", root_path, method: :post, class: "btn btn-success btn-lg w-100" %>
+              <% if current_user.id != @secret_santa.creator_id %>
+                <%= button_to "Quero Participar", join_secret_santa_participants_path(@secret_santa), method: :post, class: "btn btn-success btn-lg w-100" %>
+              <% else %>
+                <%= button_to "Iniciar Amigo Oculto", root_path, method: :post, class: "btn btn-success btn-lg w-100" %>
+              <% end %>
             </div>
 
             <hr>

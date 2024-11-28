@@ -13,4 +13,10 @@ class User < ApplicationRecord
   has_one :user_preference, dependent: :destroy
   accepts_nested_attributes_for :user_preference
 
+  private 
+
+  # def completed_profile
+  #   # logica pra verificar se o usuario ja tem os dados completos
+  #   # antes de criar um sorteio
+  # end
 end
