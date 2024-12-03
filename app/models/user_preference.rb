@@ -4,6 +4,6 @@ class UserPreference < ApplicationRecord
   validates :nickname, presence: true
 
   def initials
-    nickname.split.map(&:first).join.upcase || user.email.split.map(&:first).join.upcase
+    nickname.split.map(&:first).join.upcase[..2] || user.email.split.map(&:first).join.upcase
   end
 end

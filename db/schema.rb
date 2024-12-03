@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_135241) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_29_160429) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -100,6 +100,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_135241) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wish_lists", force: :cascade do |t|
+    t.string "item"
+    t.text "description"
+    t.text "font_reference"
+    t.integer "participant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["participant_id"], name: "index_wish_lists_on_participant_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assignments", "secret_santas"
@@ -109,4 +119,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_135241) do
   add_foreign_key "participants", "users"
   add_foreign_key "secret_santas", "users", column: "creator_id"
   add_foreign_key "user_preferences", "users"
+  add_foreign_key "wish_lists", "participants"
 end

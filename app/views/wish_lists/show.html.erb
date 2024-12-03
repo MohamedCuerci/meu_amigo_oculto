@@ -1,0 +1,5 @@
+<h1><%= @wish_list.item %></h1>
+<p><%= @wish_list.description %></p>
+<p><%= @wish_list.font_reference %></p>
+<%= link_to 'Editar', edit_participant_wish_list_path(@participant, @wish_list) %> |
+<%= link_to 'Voltar', participant_wish_lists_path(@participant) %>

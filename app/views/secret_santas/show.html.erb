@@ -1,7 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 
-<div class="container text-center">
+<div>
+  <%= link_to "Edit this secret santum", edit_secret_santa_path(@secret_santa) %> |
+  <%= link_to "Back to secret santa", secret_santas_path %>
+
+  <%= button_to "Destroy this secret santum", @secret_santa, method: :delete %>
+</div>
+
+<div class="container text-center show-backgroud">
   <div class="container text-center">
     <!-- Status do Sorteio -->
     <h5>"Sorteio/Aberto"</h5>
@@ -26,9 +33,9 @@
             <h5 class="text-start">Participantes: <%= @secret_santa.participants.count %></h5>
 
             <div class="text-center mt-3">
-              <% if current_user.id != @secret_santa.creator_id %>
+              <% if current_user.id != @secret_santa.creator_id && !@secret_santa.participants.pluck(:user_id).include?(current_user.id) %>
                 <%= button_to "Quero Participar", join_secret_santa_participants_path(@secret_santa), method: :post, class: "btn btn-success btn-lg w-100" %>
-              <% else %>
+              <% elsif @secret_santa.creator_id == current_user.id %>
                 <%= button_to "Iniciar Amigo Oculto", root_path, method: :post, class: "btn btn-success btn-lg w-100" %>
               <% end %>
             </div>
@@ -36,19 +43,8 @@
             <hr>
 
             <!-- Informações do Criador -->
-            <div class="profile-container d-flex align-items-center">
-              <% if @secret_santa.creator.user_preference.profile_picture.attached? %>
-                <%= image_tag @secret_santa.creator.user_preference.profile_picture, class: "profile-img rounded-circle me-3", alt: @secret_santa.creator.email %>
-              <% else %>
-                <div class="profile-initials d-flex justify-content-center align-items-center rounded-circle me-3">
-                  <%= @secret_santa.creator.user_preference.initials %>
-                </div>
-              <% end %>
-              <div class="profile-info">
-                <p class="profile-name fw-bold mb-1 text-start"><%= @secret_santa.creator.user_preference.nickname %></p>
-                <p class="profile-email text-muted mb-1 text-start"><%= @secret_santa.creator.email %></p>
-              </div>
-            </div>
+            <%= render "info_creator" %>
+
             <span class="text-muted mt-2 text-start">Organizador do sorteio desde <%= @secret_santa.creator.created_at.strftime('%b/%Y') %></span>
           </div>
         </div>
@@ -64,6 +60,8 @@
   </div>
 
   <!-- partial de participantes -->
+  <%= render "list_of_participants", participants: @secret_santa.participants %>
+  <%#= render "list_of_participants" %>
 </div>
 
 
@@ -79,11 +77,3 @@
   </div>
   <%= form.submit "Adicionar", class: "btn btn-primary" %>
 <% end %>-->
-
-
-<div>
-  <%= link_to "Edit this secret santum", edit_secret_santa_path(@secret_santa) %> |
-  <%= link_to "Back to secret santa", secret_santas_path %>
-
-  <%= button_to "Destroy this secret santum", @secret_santa, method: :delete %>
-</div>

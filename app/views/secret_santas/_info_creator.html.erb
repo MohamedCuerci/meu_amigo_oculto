@@ -1,0 +1,13 @@
+<div class="profile-container d-flex align-items-center">
+  <% if @secret_santa.creator.user_preference.profile_picture.attached? %>
+    <%= image_tag @secret_santa.creator.user_preference.profile_picture, class: "profile-img rounded-circle me-3", alt: @secret_santa.creator.email %>
+  <% else %>
+    <div class="profile-initials d-flex justify-content-center align-items-center rounded-circle me-3">
+      <%= @secret_santa.creator.user_preference.initials %>
+    </div>
+  <% end %>
+  <div class="profile-info">
+    <p class="profile-name fw-bold mb-1 text-start"><%= @secret_santa.creator.user_preference.nickname %></p>
+    <p class="profile-email text-muted mb-1 text-start"><%= @secret_santa.creator.email %></p>
+  </div>
+</div>
