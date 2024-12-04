@@ -6,5 +6,7 @@
 
 <div>
   <%= link_to "Show this secret santum", @secret_santa %> |
-  <%= link_to "Back to secret santa", secret_santas_path %>
+  <%= link_to secret_santas_path, class: 'btn btn-secondary mb-3' do %>
+    <i class="fas fa-arrow-left me-2"></i>Voltar ao Amigo Oculto
+  <% end %>
 </div>

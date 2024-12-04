@@ -1,11 +1,26 @@
 <!--<p style="color: green"><%= notice %></p>-->
 
 
-<div>
-  <%= link_to "Edit this secret santum", edit_secret_santa_path(@secret_santa) %> |
-  <%= link_to "Back to secret santa", secret_santas_path %>
+<div class="row">
+  <div class="text-start col">
+    <%= link_to secret_santas_path, class: 'btn btn-secondary mb-3' do %>
+      <i class="fas fa-arrow-left me-2"></i>Voltar
+    <% end %>
 
-  <%= button_to "Destroy this secret santum", @secret_santa, method: :delete %>
+    <% if current_user == @secret_santa.creator %>
+      <%= link_to edit_secret_santa_path(@secret_santa), class: 'btn btn-warning mb-3'  do %>
+        <i class="fas fa-pencil-alt"></i> Editar
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="text-end col">
+    <% if current_user == @secret_santa.creator %>
+      <%= button_to @secret_santa, method: :delete, class: 'btn btn-danger mb-3' do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="container text-center show-backgroud">
