@@ -27,6 +27,12 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def destroy
+    @participant = @secret_santa.participants.find(params[:id])
+    @participant.destroy
+    redirect_to secret_santa_path(@secret_santa), notice: "Participante vou removido com sucesso"
+  end
+
   private
 
   def set_secret_santa

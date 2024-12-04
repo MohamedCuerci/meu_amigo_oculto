@@ -6,9 +6,6 @@ Rails.application.routes.draw do
       collection do
         post :join # Define um caminho como /secret_santas/:secret_santa_id/participants/join
       end
-  
-      # Adicionando WishLists aninhado a Participants
-      # resources :wish_lists, only: [:index, :new, :create] # Inclua ou exclua as actions conforme necessário
     end
   end
 
@@ -30,12 +27,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :participants, only: [] do
-    resources :wish_lists#, only: [:index, :new, :create]
+    resources :wish_lists
   end
-  
-  # resources :wish_lists, only: [:show, :edit, :update, :destroy]
-  
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

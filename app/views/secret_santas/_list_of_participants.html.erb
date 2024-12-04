@@ -19,6 +19,14 @@
                 <div class="text-start"><%= link_to 'Ver lista de desejos', participant_wish_lists_path(participant) %></div> 
                 <!--<div class="text-start"><%= link_to 'Add Desejo', new_participant_wish_list_path(participant_id: participant.id) %></div>-->
 
+                <% if current_user == @secret_santa.creator  %>
+                  <div class="text-end">
+                    <%= button_to "Remover participante", secret_santa_participant_path(@secret_santa, participant), 
+                                  method: :delete, 
+                                  data: { confirm: "Tem certeza que deseja remover este participante?" }, 
+                                  class: 'btn btn-danger' %>
+                  </div>
+                <% end %>
                 <div class="text-end"><%= time_ago_in_words(participant.created_at) %></div>
             </div>
           </div>

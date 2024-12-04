@@ -21,9 +21,24 @@
     <%= form.text_area :description %>
   </div>
 
+  <div>
+    <%= form.label :maximum_number, style: "display: block" %>
+    <%= form.number_field :maximum_number, min: 1 %>
+  </div>
+
   <div class="form-group">
     <%= form.label :image %>
     <%= form.file_field :image, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :prize_date, "Data da Premiação" %>
+    <%= form.date_field :prize_date, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :event_type, "Tipo de Evento" %>
+    <%= form.select :event_type, SecretSanta.event_types.keys.map { |type| [type.humanize, type] }, prompt: "Selecione o tipo de evento" %>
   </div>
 
   <div>

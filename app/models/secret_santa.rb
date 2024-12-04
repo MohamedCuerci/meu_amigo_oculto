@@ -9,6 +9,8 @@ class SecretSanta < ApplicationRecord
 
   before_create :generate_unique_code
 
+  enum event_type: { sorteio: 0, amigo_oculto: 1 }
+
   # def started?
   #   # Logica pra saber se o sorteio ja começou
   #   matches.present?
