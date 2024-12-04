@@ -2,34 +2,40 @@
 
 <div>
   <% participants.each do |participant| %>
-      <div class="profile-info-doadores">
-        <div class="profile-container d-flex align-items-center">
-          <% if participant.user.user_preference.profile_picture.attached? %>
-            <%= image_tag participant.user.user_preference.profile_picture, class: "profile-img rounded-circle me-3", alt: participant.user.email %>
-          <% else %>
-            <div class="profile-initials d-flex justify-content-center align-items-center rounded-circle me-3">
-              <%= participant.user.user_preference.initials %>
+      <div class="row profile-info-doadores ">
+        <%# foto perfil %>
+        <div class="col-1">
+          <div class="profile-container d-flex align-items-center">
+            <% if participant.user.user_preference.profile_picture.attached? %>
+              <%= image_tag participant.user.user_preference.profile_picture, class: "profile-img rounded-circle me-3", alt: participant.user.email %>
+            <% else %>
+              <div class="profile-initials d-flex justify-content-center align-items-center rounded-circle me-3">
+                <%= participant.user.user_preference.initials %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="info-show col-6">
+          <!-- informações participante-->
+          <div class="profile-name fw-bold text-start"><%= participant.user.user_preference.nickname %></div>
+          <div class="profile-email text-muted text-start"><%= participant.user.email %></div>
+          <div>
+              <div class="text-start"><%= link_to 'Ver lista de desejos', participant_wish_lists_path(participant) %></div> 
+          </div>
+        </div>
+
+        <!-- extras -->
+        <div class="col-5 align-self-end">
+          <% if current_user == @secret_santa.creator  %>
+            <div class="text-end">
+              <%= button_to "Remover participante", secret_santa_participant_path(@secret_santa, participant), 
+                            method: :delete, 
+                            data: { confirm: "Tem certeza que deseja remover este participante?" }, 
+                            class: 'btn btn-danger' %>
             </div>
           <% end %>
-
-          <div class="info-show">
-            <div class="profile-name fw-bold text-start"><%= participant.user.user_preference.nickname %></div>
-            <div class="profile-email text-muted text-start"><%= participant.user.email %></div>
-            <div>
-                <div class="text-start"><%= link_to 'Ver lista de desejos', participant_wish_lists_path(participant) %></div> 
-                <!--<div class="text-start"><%= link_to 'Add Desejo', new_participant_wish_list_path(participant_id: participant.id) %></div>-->
-
-                <% if current_user == @secret_santa.creator  %>
-                  <div class="text-end">
-                    <%= button_to "Remover participante", secret_santa_participant_path(@secret_santa, participant), 
-                                  method: :delete, 
-                                  data: { confirm: "Tem certeza que deseja remover este participante?" }, 
-                                  class: 'btn btn-danger' %>
-                  </div>
-                <% end %>
-                <div class="text-end"><%= time_ago_in_words(participant.created_at) %></div>
-            </div>
-          </div>
+          <div class="text-end"><%= time_ago_in_words(participant.created_at) %></div>
         </div>
       </div>
   <% end %>
