@@ -45,9 +45,13 @@
       <div class="col-md-4">
         <div class="card p-0">
           <div class="card-body">
-            <h4 class="text-start">Data do sorteio: <%= @secret_santa.prize_date.strftime('%d/%m/%Y') %></h4>
-            <h4 class="text-start"><%= progress_bar(@secret_santa) %></h4>
-            <h5 class="text-start">Participantes: <%= @secret_santa.participants.count %>/<%= @secret_santa.maximum_number %></h5>
+            <div class="text-start">
+              <h4>Data do sorteio: <%= @secret_santa.prize_date.strftime('%d/%m/%Y') %></h4>
+              <h4><%= progress_bar(@secret_santa) %></h4>
+              <h5>Participantes: <%= @secret_santa.participants.count %>/<%= @secret_santa.maximum_number %></h5>
+              <p><strong>Local do sorteio:</strong> <%= @secret_santa.address %></p>
+              <p><strong>Preço médio de presente:</strong> R$<%= @secret_santa.gift_value %></p>
+            </div>
 
             <div class="text-center mt-3">
               <% if current_user.id != @secret_santa.creator_id && !@secret_santa.participants.pluck(:user_id).include?(current_user.id) %>

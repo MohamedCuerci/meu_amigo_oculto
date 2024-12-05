@@ -78,6 +78,6 @@ class SecretSantasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def secret_santa_params
-      params.require(:secret_santa).permit(:name, :code, :description, :image, :event_type, :prize_date, :maximum_number)
+      params.require(:secret_santa).permit(:name, :code, :description, :image, :event_type, :prize_date, :maximum_number, :address, :gift_value, :winner)
     end
 end

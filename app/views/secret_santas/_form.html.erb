@@ -1,47 +1,71 @@
-<%= form_with(model: secret_santa) do |form| %>
-  <% if secret_santa.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(secret_santa.errors.count, "error") %> prohibited this secret_santa from being saved:</h2>
+<div class="signup-container">
+  <div class="signup-card">
+    <!--<h2 class="signup-title"><%= @secret_santa.event_type %></h2>-->
 
-      <ul>
-        <% secret_santa.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form_with(model: secret_santa, html: { class: 'signup-form' }) do |form| %>
+      <% if secret_santa.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(secret_santa.errors.count, "erro") %> impediram este amigo secreto de ser salvo:</h2>
+          <ul>
+            <% secret_santa.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+      <div class="form-group">
+        <%= form.label :name, "Nome do Evento", class: 'form-label' %>
+        <%= form.text_field :name, class: 'form-input', placeholder: 'Digite o nome do evento' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description, "Descrição", class: 'form-label' %>
+        <%= form.text_area :description, class: 'form-input', placeholder: 'Descreva os detalhes do amigo secreto' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :address, "Endereço", class: 'form-label' %>
+        <%= form.text_area :address, class: 'form-input', placeholder: 'rua da fortuna 123' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :maximum_number, "Número Máximo de Participantes", class: 'form-label' %>
+        <%= form.number_field :maximum_number, min: 1, class: 'form-input', placeholder: '10' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :gift_value, "Valor Médio para os presentes", class: 'form-label' %>
+        <%= form.number_field :gift_value, min: 1, class: 'form-input', placeholder: '50' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :image, "Imagem do Evento", class: 'form-label' %>
+        <%= form.file_field :image, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :prize_date, "Data da Premiação¹", class: 'form-label' %>
+        <%= form.date_field :prize_date, class: 'form-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :event_type, "Tipo de Evento²", class: 'form-label' %>
+        <%= form.select :event_type, 
+            SecretSanta.event_types.keys.map { |type| [type.humanize, type] }, 
+            { prompt: "Selecione o tipo de evento" }, 
+            class: 'form-input' %>
+      </div>
+
+      <div class="form-actions">
+        <%= form.submit "Criar Amigo Secreto", class: 'btn-signup' %>
+      </div>
+
+      <div class="text-muted small">
+      <br>
+        <p>1- a data da premiação serve apenas como referencia para os participantes, o sorteio n vai iniciar automaticamente nessa data</p>
+        <p>2- Caso o tipo de evento for "amigo oculto" o criador ira automaticamente ser incluido como participar do sorteio</p>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :maximum_number, style: "display: block" %>
-    <%= form.number_field :maximum_number, min: 1 %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :image %>
-    <%= form.file_field :image, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :prize_date, "Data da Premiação" %>
-    <%= form.date_field :prize_date, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :event_type, "Tipo de Evento" %>
-    <%= form.select :event_type, SecretSanta.event_types.keys.map { |type| [type.humanize, type] }, prompt: "Selecione o tipo de evento" %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_04_160148) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_05_143434) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_160148) do
     t.integer "event_type", default: 0, null: false
     t.datetime "prize_date"
     t.integer "maximum_number"
+    t.string "address"
+    t.integer "gift_value"
+    t.string "winner"
     t.index ["code"], name: "index_secret_santas_on_code", unique: true
     t.index ["creator_id"], name: "index_secret_santas_on_creator_id"
     t.index ["name"], name: "index_secret_santas_on_name"

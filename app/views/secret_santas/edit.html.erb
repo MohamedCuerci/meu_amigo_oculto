@@ -1,12 +1,11 @@
-<h1>Editing secret santum</h1>
+<h1 class="text-center signup-title">Editando <%= @secret_santa.event_type %></h1>
+
+<div>
+  <%= link_to secret_santa_path(@secret_santa.id), class: 'btn btn-secondary mb-3' do %>
+    <i class="fas fa-arrow-left me-2"></i>Voltar ao Amigo Oculto
+  <% end %>
+</div>
 
 <%= render "form", secret_santa: @secret_santa %>
 
 <br>
-
-<div>
-  <%= link_to "Show this secret santum", @secret_santa %> |
-  <%= link_to secret_santas_path, class: 'btn btn-secondary mb-3' do %>
-    <i class="fas fa-arrow-left me-2"></i>Voltar ao Amigo Oculto
-  <% end %>
-</div>
