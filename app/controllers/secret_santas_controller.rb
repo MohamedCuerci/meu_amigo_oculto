@@ -1,7 +1,6 @@
 class SecretSantasController < ApplicationController
-  before_action :set_secret_santa, only: %i[ show edit update destroy ]
+  before_action :set_secret_santa, only: %i[ show edit update destroy draw ]
   before_action :authenticate_user!, only: %i[ new create edit update ]
-  # validação para apenas o criador do sorteio conseguir apagar
 
   # GET /secret_santa or /secret_santa.json
   def index
@@ -61,14 +60,22 @@ class SecretSantasController < ApplicationController
     end
   end
 
-  # def find
-  #   @secret_santa = SecretSanta.find_by(code: params[:code])
-  #   if @secret_santa
-  #     render json: @secret_santa
-  #   else
-  #     render json: { error: 'Sorteio não encontrado' }, status: :not_found
-  #   end
-  # end
+  def draw
+    # secret_santa = SecretSanta.find(params[:id])
+
+    if @secret_santa.amigo_oculto?
+      # amigo oculto
+      @secret_santa.perform_draw
+      # aqui atualizado o status do sorteio
+      redirect_to secret_santa_path(@secret_santa), notice: "Sorteio realizado com sucesso!"
+    else
+      # sorteio
+      # @secret_santa.perfom_prize_draw
+      # redirect_to secret_santa_path(@secret_santa), alert: "O tipo de evento não é válido para sorteio."
+    end
+  rescue StandardError => e
+    redirect_to secret_santa_path(@secret_santa), alert: "Erro ao realizar o sorteio: #{e.message}"
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

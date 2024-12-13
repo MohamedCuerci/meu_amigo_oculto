@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_05_143434) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_13_155948) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,10 +41,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_143434) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "secret_santa_id", null: false
-    t.integer "giver_id", null: false
-    t.integer "receiver_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "giver_id", null: false
+    t.integer "receiver_id", null: false
     t.index ["giver_id"], name: "index_assignments_on_giver_id"
     t.index ["receiver_id"], name: "index_assignments_on_receiver_id"
     t.index ["secret_santa_id"], name: "index_assignments_on_secret_santa_id"
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_143434) do
     t.string "address"
     t.integer "gift_value"
     t.string "winner"
+    t.integer "status", default: 0, null: false
     t.index ["code"], name: "index_secret_santas_on_code", unique: true
     t.index ["creator_id"], name: "index_secret_santas_on_creator_id"
     t.index ["name"], name: "index_secret_santas_on_name"
@@ -118,9 +119,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_05_143434) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assignments", "participants", column: "giver_id"
+  add_foreign_key "assignments", "participants", column: "receiver_id"
   add_foreign_key "assignments", "secret_santas"
-  add_foreign_key "assignments", "users", column: "giver_id"
-  add_foreign_key "assignments", "users", column: "receiver_id"
   add_foreign_key "participants", "secret_santas"
   add_foreign_key "participants", "users"
   add_foreign_key "secret_santas", "users", column: "creator_id"

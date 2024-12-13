@@ -23,6 +23,13 @@
   </div>
 </div>
 
+<% if @secret_santa.completed? %>
+  <div class="alert alert-success text-center">
+    Este sorteio foi realizado! Confira quem é seu amigo secreto.
+  </div>
+<% end %>
+
+
 <div class="container text-center show-backgroud">
   <div class="container text-center">
     <!-- Status do Sorteio -->
@@ -54,10 +61,10 @@
             </div>
 
             <div class="text-center mt-3">
-              <% if current_user.id != @secret_santa.creator_id && !@secret_santa.participants.pluck(:user_id).include?(current_user.id) %>
-                <%= button_to "Quero Participar", join_secret_santa_participants_path(@secret_santa), method: :post, class: "btn btn-success btn-lg w-100" %>
-              <% elsif @secret_santa.creator_id == current_user.id %>
-                <%= button_to "Iniciar Amigo Oculto", root_path, method: :post, class: "btn btn-success btn-lg w-100" %>
+              <% if user_signed_in? && current_user.id != @secret_santa.creator_id && !@secret_santa.participants.pluck(:user_id).include?(current_user.id) %>
+                <%= button_to "Quero Participar", join_secret_santa_participants_path(@secret_santa), method: :post, class: "btn btn-success btn-lg w-100",data: { confirm: "Deseja realmente realizar o sorteio? Isso não poderá ser desfeito." } %>
+              <% elsif user_signed_in? && @secret_santa.creator_id == current_user.id %>
+                <%= button_to "Iniciar Amigo Oculto", draw_secret_santa_path(@secret_santa), method: :post, class: "btn btn-success btn-lg w-100", disabled: @secret_santa.completed? %>
               <% end %>
             </div>
 
