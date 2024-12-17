@@ -1,11 +1,12 @@
 class SecretSantasController < ApplicationController
+  include Pagy::Backend
   before_action :set_secret_santa, only: %i[ show edit update destroy draw ]
   before_action :authenticate_user!, only: %i[ new create edit update my_secret_santas ]
 
   # GET /secret_santa or /secret_santa.json
   def index
     @q = SecretSanta.ransack(params[:q])
-    @secret_santas = @q.result(distinct: true)
+    @pagy, @secret_santas = pagy(@q.result(distinct: true))
   end
 
   def my_secret_santas

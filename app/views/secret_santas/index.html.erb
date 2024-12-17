@@ -5,11 +5,11 @@
 <div class="card shadow-sm">
   <div class="card-header d-flex justify-content-between align-items-center">
     <h5 class="mb-0">Filtrar Amigos Ocultos</h5>
-    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#searchForm" aria-expanded="true" aria-controls="searchForm">
+    <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#searchForm" aria-expanded="false" aria-controls="searchForm">
       Mostrar/Ocultar
     </button>
   </div>
-  <div id="searchForm" class="collapse show">
+  <div id="searchForm" class="collapse">
     <div class="card-body">
       <%= render partial: 'search_form', locals: { q: @q } %>
     </div>
@@ -27,3 +27,7 @@
 </div>
 
 <%= link_to "New secret santa", new_secret_santa_path %>
+
+<div class="d-flex justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>

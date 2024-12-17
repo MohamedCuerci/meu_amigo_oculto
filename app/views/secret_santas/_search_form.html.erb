@@ -1,28 +1,28 @@
 
-<%= search_form_for @q, url: secret_santas_path, method: :get, html: { class: "row g-3" } do |f| %>
+<%= search_form_for @q, url: secret_santas_path, method: :get, html: { class: "row g-2" } do |f| %>
   <div class="col-md-4">
-    <%= f.label :name_cont, "Nome", class: "form-label" %>
+    <%= f.label :name_cont, "Nome", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.search_field :name_cont, placeholder: "Digite um nome...", class: "form-control" %>
   </div>
 
   <div class="col-md-4">
-    <%= f.label :code_cont, "Código", class: "form-label" %>
+    <%= f.label :code_cont, "Código", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.search_field :code_cont, placeholder: "Digite um código...", class: "form-control" %>
   </div>
 
   <div class="col-md-2">
-    <%= f.label :gift_value_gteq, "Valor do prêmio mínimo", class: "form-label" %>
+    <%= f.label :gift_value_gteq, "Valor do prêmio mínimo", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.search_field :gift_value_gteq, placeholder: "Digite um valor...", class: "form-control" %>
   </div>
 
   <div class="col-md-2">
-    <%= f.label :status_eq, "Status", class: "form-label" %>
+    <%= f.label :status_eq, "Status", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.select :status_eq, SecretSanta.statuses.keys.map { |key| [key.titleize, key] }, 
                 include_blank: "Todos", class: "form-select" %>
   </div>
 
   <div class="col-md-4">
-    <%= f.label :prize_date_gteq, "Data do sorteio (a partir de)", class: "form-label" %>
+    <%= f.label :prize_date_gteq, "Data do sorteio (a partir de)", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.date_field :prize_date_gteq, class: "form-control" %>
   </div>
 

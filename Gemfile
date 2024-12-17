@@ -82,3 +82,5 @@ gem 'jquery-rails'
 gem "devise", "~> 4.9"
 
 gem 'ransack'
+
+gem 'pagy', '~> 9.3'
