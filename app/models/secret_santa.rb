@@ -11,6 +11,10 @@ class SecretSanta < ApplicationRecord
   enum event_type: { sorteio: 0, amigo_oculto: 1 }
   enum status: { pending: 0, completed: 1 } # finished?
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "code", "created_at", "creator_id", "description", "event_type", "gift_value", "id", "id_value", "maximum_number", "name", "prize_date", "status", "updated_at", "winner"]
+  end
+
   def perform_draw
     participant_ids = participants.pluck(:id)
     

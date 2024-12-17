@@ -4,7 +4,8 @@ class SecretSantasController < ApplicationController
 
   # GET /secret_santa or /secret_santa.json
   def index
-    @secret_santas = SecretSanta.pending
+    @q = SecretSanta.ransack(params[:q])
+    @secret_santas = @q.result(distinct: true)
   end
 
   def my_secret_santas

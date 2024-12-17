@@ -80,3 +80,5 @@ gem 'dartsass-sprockets'
 gem 'bootstrap', '~> 5.3.3'
 gem 'jquery-rails'
 gem "devise", "~> 4.9"
+
+gem 'ransack'
