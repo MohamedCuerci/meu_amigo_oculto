@@ -1,14 +1,24 @@
 class SecretSantasController < ApplicationController
   before_action :set_secret_santa, only: %i[ show edit update destroy draw ]
-  before_action :authenticate_user!, only: %i[ new create edit update ]
+  before_action :authenticate_user!, only: %i[ new create edit update my_secret_santas ]
 
   # GET /secret_santa or /secret_santa.json
   def index
-    @secret_santas = SecretSanta.all
+    @secret_santas = SecretSanta.pending
+  end
+
+  def my_secret_santas
+    @secret_santas = SecretSanta.joins(:participants).where(participants: { user_id: current_user.id })
+
+    @secret_santa_completed = @secret_santas.completed
+    @secret_santa_pending = @secret_santas.pending
   end
 
   # GET /secret_santa/1 or /secret_santa/1.json
   def show
+    @participants = @secret_santa.participants.includes(:user).sort_by do |participant|
+      participant.user == current_user ? 0 : 1
+    end
   end
 
   # GET /secret_santa/new

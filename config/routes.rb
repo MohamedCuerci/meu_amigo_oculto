@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/my_secret_santas', to: 'secret_santas#my_secret_santas', as: 'my_secret_santas'
+
   resources :user_preferences
 
   devise_for :users, controllers: { 
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  root 'home#index'
+  root 'secret_santas#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

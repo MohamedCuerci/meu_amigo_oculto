@@ -28,6 +28,11 @@ class SecretSanta < ApplicationRecord
     end
   end
 
+  def user_in_event?(user_id)
+    return if user_id.nil?
+    participants.pluck(:user_id).include?(user_id)
+  end
+
   private
 
   def generate_secret_santa_draw(participant_ids)

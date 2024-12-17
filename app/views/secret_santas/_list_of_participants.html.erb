@@ -39,7 +39,7 @@
       </div>
 
       <!-- Extras -->
-      <div class="col-12 d-flex flex-column align-items-end">
+      <div class="col-12 col-md-4 d-flex flex-column align-items-end">
         <% if current_user == @secret_santa.creator %>
           <div class="mb-2">
             <%= button_to "Remover participante", secret_santa_participant_path(@secret_santa, participant), 
