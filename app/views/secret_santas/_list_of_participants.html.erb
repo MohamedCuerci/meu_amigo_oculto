@@ -47,6 +47,13 @@
                           data: { confirm: "Tem certeza que deseja remover este participante?" }, 
                           class: 'btn btn-danger btn-sm' %>
           </div>
+        <% elsif current_user.present? && current_user == participant.user %>
+          <div class="mb-2">
+            <%= button_to "Sair do sorteio", secret_santa_participant_path(@secret_santa, participant), 
+                          method: :delete, 
+                          data: { confirm: "Tem certeza que deseja sair do sorteio ?" }, 
+                          class: 'btn btn-danger btn-sm' %>
+          </div>
         <% end %>
         <div class="text-muted small"><%= time_ago_in_words(participant.created_at) %></div>
       </div>

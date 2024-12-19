@@ -1,11 +1,10 @@
-<h1>New secret santum</h1>
-
-<%= render "form", secret_santa: @secret_santa %>
-
-<br>
+<h1 class="text-center">Novo Amigo Oculto</h1>
 
 <div>
   <%= link_to secret_santas_path, class: 'btn btn-secondary mb-3' do %>
     <i class="fas fa-arrow-left me-2"></i>Voltar
   <% end %>
 </div>
+
+<%= render "form", secret_santa: @secret_santa %>
+

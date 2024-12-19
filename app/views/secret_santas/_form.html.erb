@@ -26,17 +26,17 @@
 
       <div class="form-group">
         <%= form.label :address, "Endereço", class: 'form-label' %>
-        <%= form.text_area :address, class: 'form-input', placeholder: 'rua da fortuna 123' %>
+        <%= form.text_area :address, class: 'form-input', placeholder: 'ex: rua da fortuna 123' %>
       </div>
 
       <div class="form-group">
         <%= form.label :maximum_number, "Número Máximo de Participantes", class: 'form-label' %>
-        <%= form.number_field :maximum_number, min: 1, class: 'form-input', placeholder: '10' %>
+        <%= form.number_field :maximum_number, min: 1, class: 'form-input', placeholder: 'ex: 10' %>
       </div>
 
       <div class="form-group">
         <%= form.label :gift_value, "Valor Médio para os presentes", class: 'form-label' %>
-        <%= form.number_field :gift_value, min: 1, class: 'form-input', placeholder: '50' %>
+        <%= form.number_field :gift_value, min: 1, class: 'form-input', placeholder: 'ex: 50' %>
       </div>
 
       <div class="form-group">

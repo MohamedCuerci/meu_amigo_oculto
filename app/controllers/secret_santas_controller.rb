@@ -6,7 +6,7 @@ class SecretSantasController < ApplicationController
   # GET /secret_santa or /secret_santa.json
   def index
     @q = SecretSanta.ransack(params[:q])
-    @pagy, @secret_santas = pagy(@q.result(distinct: true))
+    @pagy, @secret_santas = pagy(@q.result(distinct: true).order(created_at: :desc))
   end
 
   def my_secret_santas
@@ -40,7 +40,7 @@ class SecretSantasController < ApplicationController
 
     respond_to do |format|
       if @secret_santa.save
-        format.html { redirect_to @secret_santa, notice: "Secret santum was successfully created." }
+        format.html { redirect_to @secret_santa, notice: "Amigo Secreto criado com sucesso!" }
         format.json { render :show, status: :created, location: @secret_santa }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class SecretSantasController < ApplicationController
   def update
     respond_to do |format|
       if @secret_santa.update(secret_santa_params)
-        format.html { redirect_to @secret_santa, notice: "Secret santum was successfully updated." }
+        format.html { redirect_to @secret_santa, notice: "Amigo Secreto atualizado com sucesso!" }
         format.json { render :show, status: :ok, location: @secret_santa }
       else
         format.html { render :edit, status: :unprocessable_entity }

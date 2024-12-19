@@ -259,5 +259,21 @@ text-decoration: underline;
   // padding-left: 10px;
 }
 
+.custom-btn {
+  background-color: #24ca68 !important;
+  border-color: #24ca68;
+  // color: white;
+}
+
+.custom-btn:hover {
+  background-color: #1ea85b !important;
+  border-color: #1ea85b;
+}
+
+.img-header {
+  width: auto;
+  height: 350px;
+  object-fit: cover; /* Para cortar a imagem e mantê-la proporcional */
+}
 
 @import "bootstrap";

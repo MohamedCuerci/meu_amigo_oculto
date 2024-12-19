@@ -4,7 +4,7 @@
 <div class="row">
   <div class="text-start col">
     <%= link_to secret_santas_path, class: 'btn btn-secondary mb-3' do %>
-      <i class="fas fa-arrow-left me-2"></i>Voltar
+      <i class="fas fa-arrow-left me-2"></i>Inicio
     <% end %>
 
     <% if current_user == @secret_santa.creator %>
@@ -53,11 +53,11 @@
         <div class="card p-0">
           <div class="card-body">
             <div class="text-start">
-              <h4>Data do sorteio: <%= @secret_santa.prize_date.strftime('%d/%m/%Y') %></h4>
+              <h4><i class="fa-regular fa-calendar-days"></i> Dia do sorteio: <%= @secret_santa.prize_date.strftime('%d/%m/%Y') %></h4>
               <h4><%= progress_bar(@secret_santa) %></h4>
               <h5>Participantes: <%= @secret_santa.participants.count %>/<%= @secret_santa.maximum_number %></h5>
-              <p><strong>Local do sorteio:</strong> <%= @secret_santa.address %></p>
-              <p><strong>Preço médio de presente:</strong> R$<%= @secret_santa.gift_value || 0 %></p>
+              <p><strong><i class="fa-solid fa-location-dot"></i> Endereço: </strong><%= @secret_santa.address %></p>
+              <p><strong><i class="fa-solid fa-money-bill"></i> Valor para presentes:</strong> R$<%= @secret_santa.gift_value || 0 %></p>
             </div>
 
             <div class="text-center mt-3">
