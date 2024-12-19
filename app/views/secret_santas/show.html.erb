@@ -57,7 +57,7 @@
               <h4><%= progress_bar(@secret_santa) %></h4>
               <h5>Participantes: <%= @secret_santa.participants.count %>/<%= @secret_santa.maximum_number %></h5>
               <p><strong>Local do sorteio:</strong> <%= @secret_santa.address %></p>
-              <p><strong>Preço médio de presente:</strong> R$<%= @secret_santa.gift_value %></p>
+              <p><strong>Preço médio de presente:</strong> R$<%= @secret_santa.gift_value || 0 %></p>
             </div>
 
             <div class="text-center mt-3">
