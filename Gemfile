@@ -72,9 +72,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-
-gem 'stringio', "~>3.1.2"
-
 # css
 gem 'dartsass-sprockets'
 gem 'bootstrap', '~> 5.3.3'
@@ -84,3 +81,13 @@ gem "devise", "~> 4.9"
 gem 'ransack'
 
 gem 'pagy', '~> 9.3'
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "aws-sdk-s3", "~> 1.176", :require => false
+
+gem 'stringio', "~>3.1.2"
+
+gem 'faraday'
+
+# chat-gpt mini
+gem 'ruby-openai'
