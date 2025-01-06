@@ -1,6 +1,6 @@
 class SecretSanta < ApplicationRecord
-  has_many :assignments
-  has_many :participants
+  has_many :assignments, dependent: :destroy
+  has_many :participants, dependent: :destroy
   has_many :users, through: :participants
   belongs_to :creator, class_name: 'User'
   has_one_attached :image, dependent: :destroy
@@ -25,7 +25,6 @@ class SecretSanta < ApplicationRecord
     ActiveRecord::Base.transaction do
       assignments.destroy_all # Remove atribuições anteriores, caso existam
       draw_result.each do |giver_id, receiver_id|
-        debugger
         assignments.create!(secret_santa_id: self.id, giver_id: giver_id, receiver_id: receiver_id)
       end
       update!(status: :completed)

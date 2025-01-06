@@ -11,7 +11,7 @@
   </div>
 
   <div class="col-md-2">
-    <%= f.label :gift_value_gteq, "Valor do prêmio mínimo", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
+    <%= f.label :gift_value_gteq, "Valor min. do presente", class: "form-label", style: "margin-top: 10px; margin-bottom: 3px;" %>
     <%= f.search_field :gift_value_gteq, placeholder: "Digite um valor...", class: "form-control" %>
   </div>
 
@@ -26,7 +26,8 @@
     <%= f.date_field :prize_date_gteq, class: "form-control" %>
   </div>
 
-  <div class="col-12 d-flex">
+  <div class="col-12 d-flex gap-2">
     <%= f.submit "Buscar", class: "btn btn-primary" %>
+    <%= link_to "Limpar", secret_santas_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
